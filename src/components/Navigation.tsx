@@ -1,4 +1,6 @@
-import { Moon, Sun, Brain } from "lucide-react";
+/// <reference types="vite-plugin-svgr/client" />
+import { Moon, Sun } from "lucide-react";
+import LpdnLogo from '@/assets/LPDN_Logo.svg?react';
 
 type Page = 'landing' | 'ethics' | 'tools' | 'recommendations';
 
@@ -27,9 +29,9 @@ export function Navigation({ currentPage, onNavigate, isDarkMode, onToggleDarkMo
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <Brain className={`h-8 w-8 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
+            <LpdnLogo className="h-12 w-12 stroke-black stroke-2" />
             <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              IA Kids
+              Atelier IA
             </span>
           </div>
 
@@ -42,7 +44,7 @@ export function Navigation({ currentPage, onNavigate, isDarkMode, onToggleDarkMo
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center space-x-2 ${
                   currentPage === item.id
                     ? isDarkMode
-                      ? 'bg-blue-600 text-white shadow-lg'
+                    ? 'bg-blue-600 text-white shadow-lg'
                       : 'bg-blue-600 text-white shadow-lg'
                     : isDarkMode
                       ? 'text-gray-300 hover:text-white hover:bg-gray-700'
@@ -79,7 +81,7 @@ export function Navigation({ currentPage, onNavigate, isDarkMode, onToggleDarkMo
                 className={`px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200 flex items-center space-x-1 whitespace-nowrap ${
                   currentPage === item.id
                     ? isDarkMode
-                      ? 'bg-blue-600 text-white'
+                    ? 'bg-blue-600 text-white'
                       : 'bg-blue-600 text-white'
                     : isDarkMode
                       ? 'text-gray-300 hover:text-white hover:bg-gray-700'
