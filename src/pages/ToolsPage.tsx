@@ -1,4 +1,4 @@
-import { MessageSquare, Image, Music, Code, Video, BookOpen, ExternalLink, Star, Brain, Sparkles, Search, Clapperboard, Palette, Mic } from "lucide-react";
+import { MessageSquare, Music, Code, Video, BookOpen, ExternalLink, Star, Brain, Sparkles, Search, Clapperboard, Palette, Mic } from "lucide-react";
 import { useState } from "react";
 
 export function ToolsPage() {
@@ -39,15 +39,37 @@ export function ToolsPage() {
       url: "https://claude.ai"
     },
     {
-      icon: <Music className="h-8 w-8 text-green-600" />,
-      name: "Suno AI",
-      categories: ["Créativité", "Musique"],
-      description: "Composer de la musique et des chansons avec l'aide de l'intelligence artificielle.",
+      icon: <Search className="h-8 w-8 text-purple-600" />,
+      name: "Perplexity",
+      categories: ["Conversation", "Éducation", "Recherche"],
+      description: "Moteur de recherche IA qui fournit des réponses précises avec des sources vérifiées pour l'apprentissage.",
+      ageRange: "13+ ans",
+      features: ["Recherche avec sources", "Réponses documentées", "Exploration de sujets", "Vérification des faits"],
+      safety: "Utilisation responsable recommandée",
+      color: "purple",
+      url: "https://www.perplexity.ai"
+    },
+    {
+      icon: <BookOpen className="h-8 w-8 text-blue-600" />,
+      name: "Gamma",
+      categories: ["Éducation", "Présentation"],
+      description: "Créer des présentations interactives et éducatives avec des modèles IA.",
       ageRange: "8+ ans",
-      features: ["Composition musicale", "Paroles", "Différents styles"],
-      safety: "À superviser",
-      color: "green",
-      url: "https://suno.com"
+      features: ["Création de présentations"],
+      safety: "Environnement sécurisé",
+      color: "blue",
+      url: "https://gamma.app"
+    },
+    {
+      icon: <BookOpen className="h-8 w-8 text-pink-600" />,
+      name: "Napkin",
+      categories: ["Éducation", "Présentation"],
+      description: "Créer des présentations texte en intégrant des visuels automatiquement.",
+      ageRange: "8+ ans",
+      features: ["Création de présentations"],
+      safety: "Environnement sécurisé",
+      color: "pink",
+      url: "https://napkin.ai"
     },
     {
       icon: <Code className="h-8 w-8 text-orange-600" />,
@@ -61,17 +83,6 @@ export function ToolsPage() {
       url: "https://scratch.mit.edu"
     },
     {
-      icon: <Video className="h-8 w-8 text-red-600" />,
-      name: "Runway ML",
-      categories: ["Créativité", "Vidéo"],
-      description: "Créer et éditer des vidéos avec des effets d'intelligence artificielle.",
-      ageRange: "13+ ans",
-      features: ["Édition vidéo", "Effets spéciaux", "Animation"],
-      safety: "À superviser",
-      color: "red",
-      url: "https://runwayml.com"
-    },
-    {
       icon: <Code className="h-8 w-8 text-green-600" />,
       name: "Vittascience",
       categories: ["Éducation", "Programmation", "Robotique"],
@@ -83,26 +94,26 @@ export function ToolsPage() {
       url: "https://www.vittascience.com"
     },
     {
-      icon: <Search className="h-8 w-8 text-purple-600" />,
-      name: "Perplexity",
-      categories: ["Conversation", "Éducation", "Recherche"],
-      description: "Moteur de recherche IA qui fournit des réponses précises avec des sources vérifiées pour l'apprentissage.",
-      ageRange: "13+ ans",
-      features: ["Recherche avec sources", "Réponses documentées", "Exploration de sujets", "Vérification des faits"],
-      safety: "Utilisation responsable recommandée",
+      icon: <Music className="h-8 w-8 text-purple-600" />,
+      name: "Suno AI",
+      categories: ["Créativité", "Musique"],
+      description: "Composer de la musique et des chansons avec l'aide de l'intelligence artificielle.",
+      ageRange: "8+ ans",
+      features: ["Composition musicale", "Paroles", "Différents styles"],
+      safety: "À superviser",
       color: "purple",
-      url: "https://www.perplexity.ai"
+      url: "https://suno.com"
     },
     {
-      icon: <Clapperboard className="h-8 w-8 text-red-600" />,
-      name: "Sora",
-      categories: ["Créativité", "Vidéo"],
-      description: "Générateur de vidéos IA d'OpenAI pour créer des contenus visuels créatifs et éducatifs.",
+      icon: <Mic className="h-8 w-8 text-orange-600" />,
+      name: "Udio",
+      categories: ["Créativité", "Musique"],
+      description: "Générateur de musique IA pour composer des chansons et explorer la créativité musicale.",
       ageRange: "13+ ans",
-      features: ["Génération de vidéos", "Création visuelle", "Storytelling", "Effets cinématographiques"],
-      safety: "Filtres de sécurité intégrés",
-      color: "red",
-      url: "https://sora.com"
+      features: ["Génération musicale", "Composition de chansons", "Styles variés", "Créativité sonore"],
+      safety: "À superviser",
+      color: "orange",
+      url: "https://www.udio.com"
     },
     {
       icon: <Video className="h-8 w-8 text-blue-600" />,
@@ -127,15 +138,26 @@ export function ToolsPage() {
       url: "https://www.midjourney.com"
     },
     {
-      icon: <Mic className="h-8 w-8 text-orange-600" />,
-      name: "Udio",
-      categories: ["Créativité", "Musique"],
-      description: "Générateur de musique IA pour composer des chansons et explorer la créativité musicale.",
+      icon: <Video className="h-8 w-8 text-red-600" />,
+      name: "Runway ML",
+      categories: ["Créativité", "Vidéo"],
+      description: "Créer et éditer des vidéos avec des effets d'intelligence artificielle.",
       ageRange: "13+ ans",
-      features: ["Génération musicale", "Composition de chansons", "Styles variés", "Créativité sonore"],
+      features: ["Édition vidéo", "Effets spéciaux", "Animation"],
       safety: "À superviser",
-      color: "orange",
-      url: "https://www.udio.com"
+      color: "red",
+      url: "https://runwayml.com"
+    },
+    {
+      icon: <Clapperboard className="h-8 w-8 text-gray-600" />,
+      name: "Sora",
+      categories: ["Créativité", "Vidéo"],
+      description: "Générateur de vidéos IA d'OpenAI pour créer des contenus visuels créatifs et éducatifs.",
+      ageRange: "13+ ans",
+      features: ["Génération de vidéos", "Création visuelle", "Storytelling", "Effets cinématographiques"],
+      safety: "Filtres de sécurité intégrés",
+      color: "gray",
+      url: "https://sora.com"
     }
   ];
 
