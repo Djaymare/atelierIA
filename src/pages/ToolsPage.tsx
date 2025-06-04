@@ -1,4 +1,4 @@
-import { MessageSquare, Image, Music, Code, Video, BookOpen, ExternalLink, Star } from "lucide-react";
+import { MessageSquare, Image, Music, Code, Video, BookOpen, ExternalLink, Star, Brain, Sparkles, Search, Clapperboard, Palette, Mic } from "lucide-react";
 import { useState } from "react";
 
 export function ToolsPage() {
@@ -8,71 +8,145 @@ export function ToolsPage() {
     {
       icon: <MessageSquare className="h-8 w-8 text-blue-600" />,
       name: "ChatGPT",
-      category: "Conversation",
-      description: "Un assistant IA pour poser des questions, obtenir des explications et avoir des conversations éducatives.",
-      ageRange: "10+ ans",
-      features: ["Questions-réponses", "Aide aux devoirs", "Explications simples"],
+      categories: ["Conversation", "Créativité", "Écriture", "Images", "Programmation", "Recherche"],
+      description: "Un assistant d'OpenAI pour poser des questions, obtenir des explications, avoir des conversations et créer des images.",
+      ageRange: "13+ ans",
+      features: ["Chat", "Création d'images", "Code"],
       safety: "Supervision parentale recommandée",
-      color: "blue"
+      color: "blue",
+      url: "https://chat.openai.com"
     },
     {
-      icon: <Image className="h-8 w-8 text-purple-600" />,
-      name: "DALL-E Kids",
-      category: "Images",
-      description: "Créer des images amusantes et créatives à partir de descriptions textuelles.",
-      ageRange: "8+ ans",
-      features: ["Création d'images", "Art numérique", "Illustrations"],
-      safety: "Filtres de contenu activés",
-      color: "purple"
+      icon: <Sparkles className="h-8 w-8 text-blue-600" />,
+      name: "Google Gemini",
+      categories: ["Conversation", "Créativité", "Écriture", "Images", "Programmation", "Recherche"],
+      description: "Assistant IA de Google pour répondre aux questions, aider aux devoirs et explorer des sujets éducatifs.",
+      ageRange: "13+ ans",
+      features: ["Questions-réponses", "Recherche d'informations", "Explications détaillées"],
+      safety: "Contrôles parentaux disponibles",
+      color: "blue",
+      url: "https://gemini.google.com"
+    },
+    {
+      icon: <Brain className="h-8 w-8 text-orange-600" />,
+      name: "Claude",
+      categories: ["Conversation", "Écriture", "Programmation", "Recherche"],
+      description: "Assistant IA d'Anthropic conçu pour être utile, inoffensif et honnête dans les interactions éducatives.",
+      ageRange: "13+ ans",
+      features: ["Conversations éducatives", "Aide à l'écriture", "Analyse de texte", "Explications claires"],
+      safety: "Conçu avec des principes de sécurité IA",
+      color: "orange",
+      url: "https://claude.ai"
     },
     {
       icon: <Music className="h-8 w-8 text-green-600" />,
       name: "Suno AI",
-      category: "Musique",
+      categories: ["Créativité", "Musique"],
       description: "Composer de la musique et des chansons avec l'aide de l'intelligence artificielle.",
-      ageRange: "12+ ans",
+      ageRange: "8+ ans",
       features: ["Composition musicale", "Paroles", "Différents styles"],
-      safety: "Contenu familial uniquement",
-      color: "green"
+      safety: "À superviser",
+      color: "green",
+      url: "https://suno.com"
     },
     {
       icon: <Code className="h-8 w-8 text-orange-600" />,
-      name: "Scratch for AI",
-      category: "Programmation",
+      name: "Scratch",
+      categories: ["Éducation", "Programmation"],
       description: "Apprendre la programmation et l'IA avec des blocs visuels adaptés aux enfants.",
       ageRange: "8+ ans",
       features: ["Programmation visuelle", "Projets IA", "Apprentissage ludique"],
       safety: "Environnement sécurisé",
-      color: "orange"
+      color: "orange",
+      url: "https://scratch.mit.edu"
     },
     {
       icon: <Video className="h-8 w-8 text-red-600" />,
-      name: "Runway ML Kids",
-      category: "Vidéo",
+      name: "Runway ML",
+      categories: ["Créativité", "Vidéo"],
       description: "Créer et éditer des vidéos avec des effets d'intelligence artificielle.",
-      ageRange: "12+ ans",
+      ageRange: "13+ ans",
       features: ["Édition vidéo", "Effets spéciaux", "Animation"],
-      safety: "Mode enfant disponible",
-      color: "red"
+      safety: "À superviser",
+      color: "red",
+      url: "https://runwayml.com"
     },
     {
-      icon: <BookOpen className="h-8 w-8 text-indigo-600" />,
-      name: "Story AI",
-      category: "Écriture",
-      description: "Écrire des histoires créatives avec l'aide de l'IA pour stimuler l'imagination.",
-      ageRange: "10+ ans",
-      features: ["Création d'histoires", "Aide à l'écriture", "Inspiration"],
-      safety: "Contenu adapté aux enfants",
-      color: "indigo"
+      icon: <Code className="h-8 w-8 text-green-600" />,
+      name: "Vittascience",
+      categories: ["Éducation", "Programmation", "Robotique"],
+      description: "Plateforme éducative française pour apprendre la programmation, la robotique et l'IA de manière ludique.",
+      ageRange: "8+ ans",
+      features: ["Programmation par blocs", "Robotique éducative", "Projets IA", "Interface adaptée aux enfants"],
+      safety: "Conçu spécifiquement pour l'éducation",
+      color: "green",
+      url: "https://www.vittascience.com"
+    },
+    {
+      icon: <Search className="h-8 w-8 text-purple-600" />,
+      name: "Perplexity",
+      categories: ["Conversation", "Éducation", "Recherche"],
+      description: "Moteur de recherche IA qui fournit des réponses précises avec des sources vérifiées pour l'apprentissage.",
+      ageRange: "13+ ans",
+      features: ["Recherche avec sources", "Réponses documentées", "Exploration de sujets", "Vérification des faits"],
+      safety: "Utilisation responsable recommandée",
+      color: "purple",
+      url: "https://www.perplexity.ai"
+    },
+    {
+      icon: <Clapperboard className="h-8 w-8 text-red-600" />,
+      name: "Sora",
+      categories: ["Créativité", "Vidéo"],
+      description: "Générateur de vidéos IA d'OpenAI pour créer des contenus visuels créatifs et éducatifs.",
+      ageRange: "13+ ans",
+      features: ["Génération de vidéos", "Création visuelle", "Storytelling", "Effets cinématographiques"],
+      safety: "Filtres de sécurité intégrés",
+      color: "red",
+      url: "https://sora.com"
+    },
+    {
+      icon: <Video className="h-8 w-8 text-blue-600" />,
+      name: "Pixverse",
+      categories: ["Créativité", "Vidéo"],
+      description: "Plateforme de génération de vidéos IA accessible pour créer des contenus visuels créatifs.",
+      ageRange: "13+ ans",
+      features: ["Génération de vidéos", "Créativité visuelle", "Partage de contenus"],
+      safety: "À superviser",
+      color: "blue",
+      url: "https://pixverse.ai"
+    },
+    {
+      icon: <Palette className="h-8 w-8 text-pink-600" />,
+      name: "Midjourney",
+      categories: ["Créativité", "Images"],
+      description: "Générateur d'images IA avancé pour créer des œuvres d'art et illustrations créatives.",
+      ageRange: "13+ ans",
+      features: ["Génération d'images", "Art numérique", "Styles artistiques", "Créativité illimitée"],
+      safety: "À superviser",
+      color: "pink",
+      url: "https://www.midjourney.com"
+    },
+    {
+      icon: <Mic className="h-8 w-8 text-orange-600" />,
+      name: "Udio",
+      categories: ["Créativité", "Musique"],
+      description: "Générateur de musique IA pour composer des chansons et explorer la créativité musicale.",
+      ageRange: "13+ ans",
+      features: ["Génération musicale", "Composition de chansons", "Styles variés", "Créativité sonore"],
+      safety: "À superviser",
+      color: "orange",
+      url: "https://www.udio.com"
     }
   ];
 
-  const categories = ["Tous", "Conversation", "Images", "Musique", "Programmation", "Vidéo", "Écriture"];
+  // Generate categories dynamically from tools
+  const allCategories = Array.from(new Set(tools.flatMap(tool => tool.categories)));
+  const categories = ["Tous", ...allCategories.sort()];
 
   // Filter tools based on selected category
-  const filteredTools = selectedCategory === "Tous" 
-    ? tools 
-    : tools.filter(tool => tool.category === selectedCategory);
+  const filteredTools = selectedCategory === "Tous"
+    ? tools
+    : tools.filter(tool => tool.categories.includes(selectedCategory));
 
   return (
     <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
@@ -125,6 +199,9 @@ export function ToolsPage() {
                 tool.color === 'green' ? 'from-green-500 to-green-600' :
                 tool.color === 'orange' ? 'from-orange-500 to-orange-600' :
                 tool.color === 'red' ? 'from-red-500 to-red-600' :
+                tool.color === 'teal' ? 'from-teal-500 to-teal-600' :
+                tool.color === 'slate' ? 'from-slate-500 to-slate-600' :
+                tool.color === 'pink' ? 'from-pink-500 to-pink-600' :
                 'from-indigo-500 to-indigo-600'
               } text-white`}>
                 <div className="flex items-center justify-between mb-4">
@@ -134,7 +211,16 @@ export function ToolsPage() {
                   </span>
                 </div>
                 <h3 className="text-xl font-bold mb-2">{tool.name}</h3>
-                <p className="text-sm opacity-90">{tool.category}</p>
+                <div className="flex flex-wrap gap-1">
+                  {tool.categories.map((category, categoryIndex) => (
+                    <span
+                      key={categoryIndex}
+                      className="text-xs bg-white/20 px-2 py-1 rounded-full opacity-90"
+                    >
+                      {category}
+                    </span>
+                  ))}
+                </div>
               </div>
 
               {/* Tool Content */}
@@ -169,10 +255,15 @@ export function ToolsPage() {
                 </div>
 
                 {/* Action Button */}
-                <button className="w-full flex items-center justify-center px-4 py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-200 group-hover:bg-blue-50 dark:group-hover:bg-blue-900/20 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                  En savoir plus
+                <a
+                  href={tool.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full flex items-center justify-center px-4 py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-200 group-hover:bg-blue-50 dark:group-hover:bg-blue-900/20 group-hover:text-blue-600 dark:group-hover:text-blue-400 no-underline"
+                >
+                  Découvrir l'outil
                   <ExternalLink className="ml-2 h-4 w-4" />
-                </button>
+                </a>
               </div>
             </div>
           ))}
