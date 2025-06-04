@@ -1,6 +1,13 @@
-import { Shield, Eye, Heart, Users, AlertTriangle, CheckCircle, Brain, Leaf, Copyright, FileText, Briefcase, Search, MessageSquareWarning, Lightbulb } from "lucide-react";
+import { Shield, Eye, Heart, Users, AlertTriangle, CheckCircle, Brain, Leaf, Copyright, FileText, Briefcase, Search, MessageSquareWarning, Lightbulb, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 
 export function EthicsPage() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlayPaused, setIsAutoPlayPaused] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
   const ethicsTopics = [
     {
       icon: <Shield className="h-8 w-8 text-blue-600" />,
@@ -104,6 +111,84 @@ export function EthicsPage() {
     }
   ];
 
+  // Fonctions de navigation du carousel
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === ethicsTopics.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? ethicsTopics.length - 1 : prevIndex - 1
+    );
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index);
+  };
+
+  // Constantes pour le swipe
+  const minSwipeDistance = 50;
+
+  // Fonctions pour le support tactile
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      nextSlide();
+    } else if (isRightSwipe) {
+      prevSlide();
+    }
+  };
+
+  // Fonctions pour l'auto-play
+  const startAutoPlay = () => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      if (!isAutoPlayPaused) {
+        nextSlide();
+      }
+    }, 8000);
+  };
+
+  const stopAutoPlay = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  };
+
+  const handleMouseEnter = () => {
+    setIsAutoPlayPaused(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsAutoPlayPaused(false);
+  };
+
+  // Effect pour l'auto-play
+  useEffect(() => {
+    startAutoPlay();
+
+    return () => {
+      stopAutoPlay();
+    };
+  }, [currentIndex, isAutoPlayPaused]);
+
   return (
     <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-6xl mx-auto">
@@ -151,40 +236,97 @@ export function EthicsPage() {
             </p>
         </div>
 
-        {/* Ethics Topics */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {ethicsTopics.map((topic, index) => (
+        {/* Ethics Topics Carousel */}
+        <div
+          className="relative mb-16"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          {/* Carousel Container */}
+          <div className="overflow-hidden rounded-2xl">
             <div
-              key={index}
-              className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 flex flex-col"
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
             >
-              <div className="flex items-center mb-6">
-                {topic.icon}
-                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 ml-4">
-                  {topic.title}
-                </h3>
-              </div>
-              
-              <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-grow">
-                {topic.description}
-              </p>
-              
-              <div className="space-y-3 mt-auto">
-                <h4 className="font-semibold text-gray-900 dark:text-gray-100 flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
-                  Bonnes pratiques :
-                </h4>
-                <ul className="space-y-2">
-                  {topic.tips.map((tip, tipIndex) => (
-                    <li key={tipIndex} className="flex items-start text-gray-600 dark:text-gray-300 text-sm">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full mt-1.5 mr-3 flex-shrink-0"></span>
-                      {tip}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              {ethicsTopics.map((topic, index) => (
+                <div
+                  key={index}
+                  className="w-full flex-shrink-0 px-4"
+                >
+                  <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 flex flex-col h-full max-w-2xl mx-auto">
+                    <div className="flex items-center mb-6">
+                      {topic.icon}
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 ml-4">
+                        {topic.title}
+                      </h3>
+                    </div>
+
+                    <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-grow">
+                      {topic.description}
+                    </p>
+
+                    <div className="space-y-3 mt-auto">
+                      <h4 className="font-semibold text-gray-900 dark:text-gray-100 flex items-center">
+                        <CheckCircle className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                        Bonnes pratiques :
+                      </h4>
+                      <ul className="space-y-2">
+                        {topic.tips.map((tip, tipIndex) => (
+                          <li key={tipIndex} className="flex items-start text-gray-600 dark:text-gray-300 text-sm">
+                            <span className="w-2 h-2 bg-blue-500 rounded-full mt-1.5 mr-3 flex-shrink-0"></span>
+                            {tip}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* Navigation Arrows */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors z-10"
+            aria-label="Slide précédent"
+          >
+            <ChevronLeft className="h-6 w-6 text-gray-600 dark:text-gray-300" />
+          </button>
+
+          <button
+            onClick={nextSlide}
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors z-10"
+            aria-label="Slide suivant"
+          >
+            <ChevronRight className="h-6 w-6 text-gray-600 dark:text-gray-300" />
+          </button>
+
+          {/* Pagination Dots */}
+          <div className="flex justify-center mt-8 space-x-2">
+            {ethicsTopics.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`w-3 h-3 rounded-full transition-colors ${
+                  index === currentIndex
+                    ? 'bg-blue-600'
+                    : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
+                }`}
+                aria-label={`Aller au slide ${index + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Slide Counter */}
+          <div className="text-center mt-4">
+            <span className="text-sm text-gray-500 dark:text-gray-400">
+              {currentIndex + 1} / {ethicsTopics.length}
+            </span>
+          </div>
         </div>
 
         {/* Warnings Section */}
